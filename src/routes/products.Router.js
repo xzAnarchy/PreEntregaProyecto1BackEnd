@@ -29,8 +29,8 @@ productosRouter.get('/:id', async (req, res) => {
 
 // tiene permisos un admin
 productosRouter.post('/', soloAdmins, async (req, res) => {
-    const data = req.body;
-    res.json(await ProductService.guardar(data));
+    let idProductoNuevo = await ProductService.guardar(req.body)
+    res.send({productoNuevo : idProductoNuevo});
 })
 
 productosRouter.put('/:id', soloAdmins, async (req, res) => {

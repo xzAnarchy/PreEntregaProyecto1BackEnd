@@ -73,7 +73,7 @@ class ContenedorArchivosCarritos {
         }
     }
 
-    async deleteObjInCart(idCart, idProduct){
+    async deleteObjInCart(idCart, idProduct) {
         try {
             const read = await fs.readFile(this.path, 'utf-8');
             let data = JSON.parse(read);
@@ -90,27 +90,27 @@ class ContenedorArchivosCarritos {
             return cart;
         } catch (error) {
             console.log(error);
-        } 
+        }
     }
 
-    async update(element, id) {
-            try {
-                const read = await fs.readFile(this.path, 'utf-8');
-                let data = JSON.parse(read);
+     async update(element, id) {
+        try {
+            const read = await fs.readFile(this.path, 'utf-8');
+            let data = JSON.parse(read);
 
-                let cart = data.find(element => id === element.id);
-                cart.products.push(element);
+            let cart = data.find(element => id === element.id);
+            cart.products.push(element);
 
-                const filteredElements = data.filter(element => element.id !== id);
-                data = [...filteredElements, cart];
-                    
-                await fs.writeFile(this.path, JSON.stringify(data, null, 2), 'utf-8');
+            const filteredElements = data.filter(element => element.id !== id);
+            data = [...filteredElements, cart];
+                
+            await fs.writeFile(this.path, JSON.stringify(data, null, 2), 'utf-8');
 
-                return cart.products;
-            } catch (error) {
-                console.log(error);
-            } 
-        }    
+            return cart.products;
+        } catch (error) {
+            console.log(error);
+        } 
+    }   
 }
 
 module.exports = ContenedorArchivosCarritos;

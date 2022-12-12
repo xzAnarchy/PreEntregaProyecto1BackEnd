@@ -57,15 +57,15 @@ carritosRouter.get('/:id/products', async (req, res) => {
     res.json(await CartService.getById(parseInt(req.params.id)));
 })
 
-
+//Sirve para agregar un producto al carrito
 carritosRouter.post('/:idCart/:idProduct/products', async (req, res) => {
-    const newProduct = await CartService.getById(req.params.idProduct);
+    const newProduct = await ProductService.listar(req.params.idProduct);
     res.json(await CartService.update(newProduct, parseInt(req.params.idCart)))
 })
 
-
+//Sirve para eliminar un producto del carrito
 carritosRouter.delete('/:idCart/:idProduct/products', async (req, res) => {
-    res.json(await CartService.deleteObjInCart(parseInt(req.params.idCart), parseInt(req.params.idCart)));
+    res.json(await CartService.deleteObjInCart(parseInt(req.params.idCart), parseInt(req.params.idProduct)));
 })
 
 module.exports = carritosRouter
