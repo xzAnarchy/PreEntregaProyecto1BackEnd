@@ -1,6 +1,5 @@
 const express = require('express')
 const path = require('path')
-
 // const ContenedorArchivo = require('./contenedores/ContenedorArchivo.js')
 
 const productosRouter = require('./routes/products.Router')
