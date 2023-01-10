@@ -4,7 +4,7 @@
     "price": "150",
     "description": "most popular soda",
     "thumbnail": "https://dummyimage.com/250/000/555",
-    "stock": "9",
+    "stock": 9,
     "id": 1
   },
   {
@@ -12,7 +12,7 @@
     "price": "160",
     "description": "the better soda fr",
     "thumbnail": "https://dummyimage.com/250/000/fff",
-    "stock": "6",
+    "stock": 6,
     "id": 2
   },
   {
@@ -20,7 +20,7 @@
     "price": "180",
     "description": "i love this one thats why is here",
     "thumbnail": "https://dummyimage.com/250/000/fff",
-    "stock": "5",
+    "stock": 5,
     "id": 3
   },
   {
@@ -29,7 +29,7 @@
     "price": "160",
     "description": "the orange soda",
     "thumbnail": "https://dummyimage.com/250/000/555",
-    "stock": "8"
+    "stock":8
   },
   {
     "id": 5,

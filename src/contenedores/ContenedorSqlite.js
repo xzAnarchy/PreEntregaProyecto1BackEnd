@@ -7,46 +7,60 @@ class ContenedorSQL {
         this.tabla = tabla
     }
     async listar(id) {
-        try {
-          return this.connection(this.table).where("id", id).select("*")
-        } catch (error) {
-        console.log(error);
-        }
+      try {
+          const [rowDataPacket] = await this.knex.select('*').from(this.tabla).where('id', id)
+          if (!rowDataPacket) throw 'elemento no encontrado'
+          return asPOJO(rowDataPacket)
+      } catch (error) {
+          throw new Error(`Error al mostrar por id: ${error}`)
       }
-    
-      async listarAll() {
-        try {
-          return this.connection.from(this.table).select('*')
-        } catch (error) {
-          console.log(error);
-        }
+  }
+
+  async listarAll(criterio = {}) {
+      try {
+          const elems = await this.knex.select('*').from(this.tabla).where(criterio)
+          const pojos = elems.map(e => asPOJO(e))
+          return pojos
+      } catch (error) {
+          throw new Error(`Error al mostrar todo ${error}`)
       }
-    
-      async save(item) {
-        try {
-          const ids = await this.connection(this.table).insert(item)
-          return ids
-        } catch (error) {
-          console.log(error)
-        } 
+  }
+
+  async guardar(elem) {
+      try {
+          const [newId] = await this.knex.insert(elem).into(this.tabla)
+          elem.id = newId
+          return asPOJO(elem)
+      } catch (error) {
+          throw new Error(`Error al guardar: ${error}`)
       }
-    
-      async update(prod, id) {
-        try {
-          const dbid = await this.connection.from(this.table).where("id", id).update({prod})
-          return dbid
-        } catch (error) {
-          console.log(error)
-        }
+  }
+
+  async actualizar(elem) {
+      elem.id = Number(elem.id)
+      try {
+          await this.knex.update(elem).from(this.tabla).where('id', elem.id)
+          return asPOJO(elem)
+      } catch (error) {
+          throw new Error(`Error al borrar: ${error}`)
       }
-    
-      async deleteById(id) {
-        try {
-            return this.connection(this.table).where("id", id).del()
-        } catch (error) {
-            console.log(error)
-        }
-    }
+  }
+
+  async borrar(id) {
+      try {
+          return this.knex.delete().from(this.tabla).where('id', id)
+      } catch (error) {
+          throw new Error(`Error al borrar: ${error}`)
+      }
+  }
+
+  async borrarAll(criterio = {}) {
+      try {
+          return this.knex.delete().from(this.tabla).where(criterio)
+      } catch (error) {
+          throw new Error(`Error al borrar: ${error}`)
+      }
+  }
 }
 
 export default ContenedorSQL

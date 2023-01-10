@@ -16,7 +16,9 @@ async function crearTablasProductos(sqlClient) {
             table.increments('id').primary()
             table.string('title', 30).notNullable()
             table.float('price').notNullable()
+            table.string('description', 50).notNullable()
             table.string('thumbnail', 1024)
+            table.float('stock').notNullable()
         })
 
         await sqlClient.destroy()
@@ -36,6 +38,10 @@ async function crearTablasCarritos(sqlClient) {
 
         await sqlClient.schema.createTable('carritos', table => {
             table.increments('id').primary()
+            table.integer('idCarrito').notNullable()
+            table.float('timestamp')
+            table.string('creationDate')
+            table.string('usuario')
             table.boolean('deleted').defaultTo(false)
         })
 
@@ -47,6 +53,9 @@ async function crearTablasCarritos(sqlClient) {
             table.string('title', 30).notNullable()
             table.float('price').notNullable().notNullable()
             table.string('thumbnail', 1024)
+            table.string('description', 50).notNullable()
+            table.string('thumbnail', 1024)
+            table.float('stock').notNullable()
         })
 
         await sqlClient.destroy()

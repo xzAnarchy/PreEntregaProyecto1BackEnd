@@ -13,21 +13,20 @@ class ContenedorMongoDb {
     async listar(id) {
         try {
             const docs = await this.coleccion.find({ '_id': id }, { __v: 0 })
-            if (docs.length == 0) {
-                throw new Error('Error al listar por id: no encontrado')
+            if (docs.length = 0) {
+                throw new Error('No se encontro el producto')
             } else {
                 const result = renameField(asPOJO(docs[0]), '_id', 'id')
                 return result
             }
         } catch (error) {
-            throw new Error(`Error al listar por id: ${error}`)
+            throw new Error(`Hubo un error al buscar el producto: ${error}`)
         }
     }
 
     async listarAll() {
         try {
-            let docs = await this.coleccion.find({}, { __v: 0 }).lean()
-            docs = docs.map(asPOJO)
+            let docs = await this.coleccion.find({}).lean()
             docs = docs.map(d => renameField(d, '_id', 'id'))
             return docs
         } catch (error) {
