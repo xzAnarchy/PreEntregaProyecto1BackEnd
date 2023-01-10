@@ -1,7 +1,9 @@
+import { json } from 'express'
+
 let productosDao
 let carritosDao
 
-switch (process.env.PERS) {
+switch ('json') {
     case 'json':
         const { default: ProductosDaoArchivo } = await import('./productos/ProductosDaoArchivo.js')
         const { default: CarritosDaoArchivo } = await import('./carritos/CarritosDaoArchivo.js')
