@@ -3,7 +3,7 @@ import { json } from 'express'
 let productosDao
 let carritosDao
 
-switch ('json') {
+switch ('mongodb') {
     case 'json':
         const { default: ProductosDaoArchivo } = await import('./productos/ProductosDaoArchivo.js')
         const { default: CarritosDaoArchivo } = await import('./carritos/CarritosDaoArchivo.js')

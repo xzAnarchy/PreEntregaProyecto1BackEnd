@@ -9,6 +9,7 @@ class ProductosDaoMongoDb extends ContenedorMongoDb {
             description: { type: String, required: true},
             thumbnail: { type: String, required: true },
             stock: {type: Number, required: true},
+            id: {type: Number, required: true}
         })
     }
 }
