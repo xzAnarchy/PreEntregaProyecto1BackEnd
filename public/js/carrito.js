@@ -68,20 +68,20 @@ document.getElementById('comboCarritos').addEventListener('change', () => {
     actualizarListaCarrito(idCarrito)
 })
 
-async function agregarAlCarrito(idCarrito, idProducto) {
+function agregarAlCarrito(idCarrito, idProducto) {
     return carritosApi.postProd(idCarrito, idProducto).then(() => {
         actualizarListaCarrito(idCarrito)
     })
 }
 
-async function quitarDelCarrito(idProducto) {
+function quitarDelCarrito(idProducto) {
     const idCarrito = document.getElementById('comboCarritos').value
     return carritosApi.deleteProd(idCarrito, idProducto).then(() => {
         actualizarListaCarrito(idCarrito)
     })
 }
 
-async function actualizarListaCarrito(idCarrito) {
+function actualizarListaCarrito(idCarrito) {
     return carritosApi.getProds(idCarrito)
         .then(prods => makeHtmlTable(prods))
         .then(html => {
@@ -136,7 +136,7 @@ function crearOpcionInicial(leyenda) {
     return defaultItem
 }
 
-async function loadComboProductos() {
+function loadComboProductos() {
     return productosApi.get()
         .then(productos => {
             const combo = document.getElementById('comboProductos');
@@ -156,7 +156,7 @@ function vaciarCombo(combo) {
     }
 }
 
-async function loadComboCarrito() {
+function loadComboCarrito() {
     return carritosApi.getIds()
         .then(ids => {
             const combo = document.getElementById('comboCarritos');

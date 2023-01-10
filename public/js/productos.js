@@ -1,5 +1,5 @@
 const productosApi = {
-    get: async() => {
+    get: () => {
         return fetch('/api/productos')
             .then(data => data.json())
     },

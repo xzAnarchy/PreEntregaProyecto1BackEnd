@@ -30,5 +30,11 @@
     "description": "the orange soda",
     "thumbnail": "https://dummyimage.com/250/000/555",
     "stock": "8"
+  },
+  {
+    "id": 5,
+    "title": "Test",
+    "price": "112",
+    "thumbnail": "https://dummyimage.com/250/000/fff"
   }
 ]
