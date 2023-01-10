@@ -3,40 +3,34 @@ import config from '../src/config.js'
 
 // opciones SQL: mariaDb, sqlite3
 
-crearTablasProductos(knex(config.sqlite3))
-crearTablasCarritos(knex(config.sqlite3))
+const knexConnection = knex(config.sqlite3);
 
 //------------------------------------------
-
-async function crearTablasProductos(sqlClient) {
     try {
-        await sqlClient.schema.dropTableIfExists('productos')
+        // _01
+        console.log('Iniciando Script...');
+        await knexConnection.schema.dropTableIfExists('productos')
 
-        await sqlClient.schema.createTable('productos', table => {
+        await knexConnection.schema.createTable('productos', table => {
             table.increments('id').primary()
             table.string('title', 30).notNullable()
             table.float('price').notNullable()
             table.string('description', 50).notNullable()
-            table.string('thumbnail', 1024)
+            table.string('thumbnail')
             table.float('stock').notNullable()
         })
-
-        await sqlClient.destroy()
-
         console.log('tabla productos creada con éxito')
     } catch (error) {
         console.log('error al crear tabla productos')
         console.log(error)
     }
-}
+
 
 //------------------------------------------
-
-async function crearTablasCarritos(sqlClient) {
     try {
-        await sqlClient.schema.dropTableIfExists('carritos')
+        await knexConnection.schema.dropTableIfExists('carritos')
 
-        await sqlClient.schema.createTable('carritos', table => {
+        await knexConnection.schema.createTable('carritos', table => {
             table.increments('id').primary()
             table.integer('idCarrito').notNullable()
             table.float('timestamp')
@@ -45,9 +39,9 @@ async function crearTablasCarritos(sqlClient) {
             table.boolean('deleted').defaultTo(false)
         })
 
-        await sqlClient.schema.dropTableIfExists('prodsEnCarritos')
+        await knexConnection.schema.dropTableIfExists('prodsEnCarritos')
 
-        await sqlClient.schema.createTable('prodsEnCarritos', table => {
+        await knexConnection.schema.createTable('prodsEnCarritos', table => {
             table.increments('id').primary()
             table.integer('idCarrito').notNullable()
             table.string('title', 30).notNullable()
@@ -57,11 +51,9 @@ async function crearTablasCarritos(sqlClient) {
             table.string('thumbnail', 1024)
             table.float('stock').notNullable()
         })
-
-        await sqlClient.destroy()
-
         console.log('tablas carritos creada con éxito')
     } catch (error) {
         console.log('error al crear tablas carritos')
     }
-}
+
+    await knexConnection.destroy()
