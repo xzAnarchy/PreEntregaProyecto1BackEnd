@@ -1,7 +1,7 @@
 [
   {
     "title": "Coke",
-    "price": "150",
+    "price": 150,
     "description": "most popular soda",
     "thumbnail": "https://dummyimage.com/250/000/555",
     "stock": 9,
@@ -9,7 +9,7 @@
   },
   {
     "title": "Sprite",
-    "price": "160",
+    "price": 160,
     "description": "the better soda fr",
     "thumbnail": "https://dummyimage.com/250/000/fff",
     "stock": 6,
@@ -17,7 +17,7 @@
   },
   {
     "title": "MtnDew",
-    "price": "180",
+    "price": 180,
     "description": "i love this one thats why is here",
     "thumbnail": "https://dummyimage.com/250/000/fff",
     "stock": 5,
@@ -26,7 +26,7 @@
   {
     "id": 4,
     "title": "Fanta",
-    "price": "160",
+    "price": 160,
     "description": "the orange soda",
     "thumbnail": "https://dummyimage.com/250/000/555",
     "stock":8
@@ -34,7 +34,9 @@
   {
     "id": 5,
     "title": "Test",
-    "price": "112",
-    "thumbnail": "https://dummyimage.com/250/000/fff"
+    "price": 112,
+    "description": "just test",
+    "thumbnail": "https://dummyimage.com/250/000/fff",
+    "stock":8
   }
 ]

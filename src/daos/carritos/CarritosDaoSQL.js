@@ -1,4 +1,4 @@
-import ContenedorSQL from "../../contenedores/ContenedorSQL.js"
+import ContenedorSQL from "../../contenedores/ContenedorSqlite.js"
 
 class CarritosDaoSQL {
 
