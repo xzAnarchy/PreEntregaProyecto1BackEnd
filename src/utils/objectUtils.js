@@ -1,12 +1,22 @@
-export const asPOJO = obj => JSON.parse(JSON.stringify(obj))
 
-export const renameField = (record, from, to) => {
-    record[to] = record[from]
-    delete record[from]
-    return record
-}
-export const removeField = (record, field) => {
-    const value = record[field]
-    delete record[field]
-    return value
-}
+    const transformMongoModel = (object) => {
+
+        let newObject = {...object._doc}
+        newObject.id = newObject._id.toString()
+        delete newObject._id
+        delete newObject.__v
+        return newObject
+    }
+
+    const transformMongoObject = (model) => {
+        let result
+        if(model.length >= 1){
+            result = model.map(elem => transformMongoModel(elem))
+        } else {
+            result = transformMongoModel(model)
+        }
+        return result
+    }
+
+export default   transformMongoObject
+

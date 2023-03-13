@@ -2,8 +2,9 @@ import { json } from 'express'
 
 let productosDao
 let carritosDao
+let usuariosDao
 
-switch ('firebase') {
+switch ('mongodb') {
     case 'json':
         const { default: ProductosDaoArchivo } = await import('./productos/ProductosDaoArchivo.js')
         const { default: CarritosDaoArchivo } = await import('./carritos/CarritosDaoArchivo.js')
@@ -21,9 +22,11 @@ switch ('firebase') {
     case 'mongodb':
         const { default: ProductosDaoMongoDb } = await import('./productos/ProductosDaoMongoDb.js')
         const { default: CarritosDaoMongoDb } = await import('./carritos/CarritosDaoMongoDb.js')
+        const { default: UsuariosDaoMongoDb } = await import('./usuarios/UsuariosDaoMongoDb.js')
 
         productosDao = new ProductosDaoMongoDb()
         carritosDao = new CarritosDaoMongoDb()
+        usuariosDao = new UsuariosDaoMongoDb()
         break
     case 'sqlite3':
         const { default: ProductosDaoSQLite3 } = await import('./productos/ProductosDaoSQLite3.js')
@@ -34,4 +37,4 @@ switch ('firebase') {
         break
 }
 
-export { productosDao, carritosDao }
+export { productosDao, carritosDao, usuariosDao }
