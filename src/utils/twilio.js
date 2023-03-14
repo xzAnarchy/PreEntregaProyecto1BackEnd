@@ -40,7 +40,7 @@ export const sendWhatsAppNewUser = async (newUser) => {
     try {
         const message = await client.messages.create({
             body: msg,
-            messagingServiceSid: twilioMessagingServiceSid,
+            from: 'whatsapp:+15077075906',
             to: `whatsapp:${adminWhatsAppPhoneNumber}`
         })
         logger.info('whatsApp new user send', message)
@@ -64,7 +64,7 @@ export const sendMessageNewCart = async (name, email, cart) => {  // funcion que
     try {
         const message = await client.messages.create({
             body: msg,
-            messagingServiceSid: twilioMessagingServiceSid,
+            from: 'whatsapp:+15077075906',
             to: `whatsapp:${adminWhatsAppPhoneNumber}`
         })
         logger.info('whatsApp new cart send', message)
