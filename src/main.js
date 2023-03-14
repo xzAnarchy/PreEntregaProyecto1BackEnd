@@ -101,5 +101,3 @@ if (mode === 'cluster') {
     server.on(`error`, error => logger.fatal(`Error en servidor: ${error}`))
 
 }
-
-

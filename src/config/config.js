@@ -3,7 +3,7 @@ dotenv.config()
 
 export const urlMongo = process.env.URL_MONGO
 export const secretSessionMongo = process.env.SECRET_SESSION_MONGO
-export const port = process.env.PORT
+export const port = process.env.PORT || 8080
 export const userMailAdmin = process.env.USER_MAILADMIN
 export const passMailAdmin = process.env.PASS_MAILADMIN
 export const twilioSID = process.env.TWILIO_ACCOUNT_SID
