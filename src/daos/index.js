@@ -1,5 +1,3 @@
-import { json } from 'express'
-
 let productosDao
 let carritosDao
 let usuariosDao
