@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Ecommerce</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link"  href="#">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart">Carrito</a>
+                    </li>
+
+                    <li class="nav-item>">
+                        <a class="nav-link" href="/profile">Perfil</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ingrese cantidad</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="number" class="form-control"  id="inputCantidad" placeholder="1" required>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-success" id="btnGuardar" data-bs-dismiss="modal">Guardar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="container mt-4 mb-4" style="width: 500px;">
+        <h2>Productos</h2>
+        <table id="table" class="table table-success table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Thumbnail</th>
+                </tr>
+            </thead>
+            <tbody id="tbody productos">
+                <% productos.forEach(producto => { %>
+                    <tr class="product" id="<%= producto.id %>" data-bs-toggle="modal" data-bs-target="#myModal">
+                        <th scope="col"><%= producto.title %></th>
+                        <th scope="col">$<%= producto.price %></th>
+                        <th scope="col"><img src="<%= producto.thumbnail %>" alt="imagen de <%= producto.title %> " style="height: 90px; width: 70px;"></th>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <br>
+    
+    </div>
+    <script type="module" src="js/index.js"></script>
+</body>
+
+</html>
