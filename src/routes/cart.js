@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getCartController , postCartAddProductController , deleteCartProductController , postCartBuyController} from '../controller/cart.js'
+import { getCartController , postCartAddProductController , deleteCartProductController , postCartBuyController} from '../controller/cart.Controllers.js'
 export const cart = Router()
 
 cart.get('/' , getCartController )

@@ -10,15 +10,36 @@ import { error } from './routes/error.js'
 import { home } from './routes/home.js'
 import { cart } from './routes/cart.js'
 import { logout } from './routes/logout.js'
+import { profile } from './routes/profile.js'
+import { chat } from './routes/chat.js'
+import {adminWebRouter} from './routes/admin.js'
 import yargs from 'yargs'
 import cluster from 'cluster'
 import { cpus } from 'os'
 import { logger } from './utils/logger.js'
+import chatWs from "./routes/ws/chat.js";
+import productsWs from "./routes/ws/home.js";
+import cartWs from "./routes/ws/cart.js";
+import adminHomeWs from "./routes/ws/admin-home.js";
+import adminChatWs from "./routes/ws/admin-chat.js";
+
 
 
 
 const app = express()
 const httpServer = new HttpServer(app)
+
+//------------------ Configuracion de Socket.io ------------------//
+import { Server as Socket } from 'socket.io'
+const io = new Socket(httpServer)
+
+io.on("connection", async (socket) => {
+    chatWs(socket);
+    productsWs(socket);
+    cartWs(socket);
+    adminHomeWs(socket);
+    adminChatWs(socket);
+});
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -44,6 +65,9 @@ app.use('/register', register)
 app.use('/error', error)
 app.use('/home', home)
 app.use('/cart', cart)
+app.use('/profile', profile)
+app.use('/chat', chat)
+app.use('/admin', adminWebRouter)
 app.get('*', (req, res) => {
     res.redirect('/login')
 })

@@ -3,6 +3,7 @@ import { json } from 'express'
 let productosDao
 let carritosDao
 let usuariosDao
+let mensajesDao
 
 switch ('mongodb') {
     case 'json':
@@ -23,10 +24,12 @@ switch ('mongodb') {
         const { default: ProductosDaoMongoDb } = await import('./productos/ProductosDaoMongoDb.js')
         const { default: CarritosDaoMongoDb } = await import('./carritos/CarritosDaoMongoDb.js')
         const { default: UsuariosDaoMongoDb } = await import('./usuarios/UsuariosDaoMongoDb.js')
+        const { default: MensajesDaoMongoDb } = await import('./mensajes/MensajesDaoMongoDb.js')
 
         productosDao = new ProductosDaoMongoDb()
         carritosDao = new CarritosDaoMongoDb()
         usuariosDao = new UsuariosDaoMongoDb()
+        mensajesDao = new MensajesDaoMongoDb()
         break
     case 'sqlite3':
         const { default: ProductosDaoSQLite3 } = await import('./productos/ProductosDaoSQLite3.js')
@@ -37,4 +40,4 @@ switch ('mongodb') {
         break
 }
 
-export { productosDao, carritosDao, usuariosDao }
+export { productosDao, carritosDao, usuariosDao, mensajesDao }

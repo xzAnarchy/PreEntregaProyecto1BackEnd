@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getRegisterController , postRegisterController } from '../controller/register.js';
+import { getRegisterController , postRegisterController } from '../controller/register.Controllers.js';
 import { upload } from '../middleware/multer.js';
 
 

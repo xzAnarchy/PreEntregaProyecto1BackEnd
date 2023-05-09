@@ -1,5 +1,5 @@
 import { createTransport } from 'nodemailer';
-import { userMailAdmin, passMailAdmin } from '../config/config.js';
+import { passMailAdmin, userMailAdmin } from '../config/config.js';
 import { logger } from './logger.js';
 
 
@@ -56,7 +56,7 @@ export const sendMailNewCart = async (nombre, email, cart) => {
     const mailOptions = {
         from: 'Servidor Node.js',
         to: userMailAdmin,
-        subject: 'nuevo pedido de ' + nombre,
+        subject: 'Nuevo pedido de ' + nombre,
         html: `<h1 style="color: blue;">Nueva compra del usuario: <span style="color: green;"> ${email} </span></h1><div><ul>`
             + listaProductosCarrito + `<h2>Total $ ${cart.total} </h2></ul><div>`
 

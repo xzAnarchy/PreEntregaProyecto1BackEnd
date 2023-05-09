@@ -53,10 +53,10 @@ class ContenedorMongoDb {
         }
     }
 
-    async actualizar(id, elemento) {
+    async actualizar(id, newElemento) {
         try {
-            const res = await this.collection.updateOne({ _id: id }, { $set: elemento })
-            return res.acknowledged
+            await this.collection.updateOne({ _id: id }, { $set: newElemento })
+            return true
         } catch (error) {
             logger.error(error)
             return false

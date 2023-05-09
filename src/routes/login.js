@@ -1,5 +1,5 @@
-import { Router } from 'express'
-import { getLoginController, postLoginController } from '../controller/login.js'
+import { Router } from 'express';
+import { getLoginController, postLoginController } from '../controller/login.Controllers.js';
 import { authenticate } from '../middleware/passport.js';
 
 
